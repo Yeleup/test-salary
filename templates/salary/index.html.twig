@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Зарплата{% endblock %}
+
+{% block body %}
+    <h1>Зарплата</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Calculate id</th>
+            <th>Зарплата на руки</th>
+            <th>Обязательные пенсионные взносы</th>
+            <th>Взносы на обязательное социальное медицинское страхование</th>
+            <th>Обязательное социальное медицинское страхование</th>
+            <th>Социальные отчисления</th>
+            <th>Корректировка</th>
+            <th>Индивидуальный подоходный налог</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for salary in salaries %}
+            <tr>
+                <td><a href="{{ path('app_calculate_show', {'id':salary.calculate.id }) }}">{{ salary.calculate.id }}</a></td>
+                <td>{{ salary.salaryInHand }}</td>
+                <td>{{ salary.opv }}</td>
+                <td>{{ salary.vosms }}</td>
+                <td>{{ salary.osms }}</td>
+                <td>{{ salary.so }}</td>
+                <td>{{ salary.adjustment }}</td>
+                <td>{{ salary.ipn }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row align-self-center mt-5">
+        <div class="col-md-8 offset-md-3">
+            <a class="btn btn-lg btn-success" href="{{ path('app_calculate_new') }}">Запись в базу (POST запрос)</a>
+            <a class="btn btn-lg btn-primary" href="{{ path('app_calculate_calculate') }}">Ендпоинт Калькуляции</a>
+        </div>
+    </div>
+{% endblock %}

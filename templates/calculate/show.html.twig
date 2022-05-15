@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calculate{% endblock %}
+
+{% block body %}
+    <h1>Calculate</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Оклад в тенге</th>
+                <td>{{ calculate.norm }}</td>
+            </tr>
+            <tr>
+                <th>Норма дней в месяц</th>
+                <td>{{ calculate.normOfDays }}</td>
+            </tr>
+            <tr>
+                <th>Отработанное количество дней</th>
+                <td>{{ calculate.workedOfDays }}</td>
+            </tr>
+            <tr>
+                <th>Имеется ли налоговый вычет 1 МЗП</th>
+                <td>{{ calculate.isTaxDeduction ? 'Да' : 'Нет' }}</td>
+            </tr>
+            <tr>
+                <th>Является ли сотрудник пенсионером</th>
+                <td>{{ calculate.isRetired ? 'Да' : 'Нет' }}</td>
+            </tr>
+            <tr>
+                <th>Является ли сотрудник инвалидом, если да, то какой группы.</th>
+                <td>{{ calculate.disabledGroup }}</td>
+            </tr>
+            <tr>
+                <th>Календарный месяц</th>
+                <td>{{ calculate.month }}</td>
+            </tr>
+            <tr>
+                <th>Календарный год</th>
+                <td>{{ calculate.year }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_salary') }}">Назад к списку</a>
+{% endblock %}
